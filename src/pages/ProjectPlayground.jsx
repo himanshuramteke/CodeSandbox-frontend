@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useTreeStructureStore } from "../store/treeStructureStore";
 import { useEditorSocketStore } from "../store/editorSocketStore";  
 import { io } from 'socket.io-client';
+import { BrowserTerminal } from "../components/molecules/BrowserTerminal/BrowserTerminal";
 
 export const ProjectPlayground = () => {
 
@@ -46,6 +47,9 @@ export const ProjectPlayground = () => {
                 </div>
             )}
             <EditorComponent />
+            <div>
+                <BrowserTerminal />
+            </div>
           </div>
         </>
     )
