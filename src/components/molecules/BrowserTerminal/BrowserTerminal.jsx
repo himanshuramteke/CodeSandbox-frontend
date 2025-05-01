@@ -1,5 +1,6 @@
 import { FitAddon } from "@xterm/addon-fit";
 import { Terminal } from "@xterm/xterm";
+import '@xterm/xterm/css/xterm.css';
 import { useEffect, useRef } from "react"
 import { AttachAddon } from '@xterm/addon-attach';
 import { useTerminalSocketStore } from "../../../store/terminalSocketStore";
@@ -25,7 +26,7 @@ export const BrowserTerminal = () => {
                 cyan: "#8be9fd",
             },
             fontSize: 16,
-            fontFamily: 'Fira code',
+            fontFamily: 'Cascadia code',
             convertEol: true,
         });
 
@@ -44,6 +45,7 @@ export const BrowserTerminal = () => {
 
         return () => {
             term.dispose();
+            terminalSocket?.close();
         }
 
     }, [terminalSocket])
@@ -52,8 +54,7 @@ export const BrowserTerminal = () => {
         <div
           ref={terminalRef}
           style={{
-            height: '25vh',
-            overflow: 'auto',
+            width: '100vw'
           }}
           className='terminal'
           id='terminal-container'
