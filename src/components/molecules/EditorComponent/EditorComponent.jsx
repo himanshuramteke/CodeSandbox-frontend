@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useEditorSocketStore } from "../../../store/editorSocketStore";
 import { useActiveFileTabStore } from "../../../store/activeFileTabStore";
 import { extensionToFileType } from "../../../utils/extensionToFileType";
+import { useEditorValueStore } from "../../../store/editorValueStore";
 
 export const EditorComponent = () => {
 
@@ -11,8 +12,10 @@ export const EditorComponent = () => {
     const [editorState, setEditorState] = useState({
         theme: null
     });
+    const [fileContent, setFileContent] = useState('');
 
     const { activeFileTab } = useActiveFileTabStore();
+    const { setValue } = useEditorValueStore();
     
     const { editorSocket } = useEditorSocketStore();
 
@@ -36,13 +39,40 @@ export const EditorComponent = () => {
         //set the new timer
         timerId = setTimeout(() => {
             const editorContent = value;
+            setValue(editorContent)
+            console.log(editorContent);
+            
             console.log("Sending writefile event");
+            if(activeFileTab) {
             editorSocket.emit("writeFile", {
                 data: editorContent,
                 pathToFileOrFolder: activeFileTab.path
-            })
+            })}
         }, 2000);
     }
+
+    useEffect(() => {
+        if (activeFileTab) {
+            editorSocket.emit('readFile', { pathToFileOrFolder: activeFileTab.path });
+            setFileContent('//Loading file content...');
+        }
+    }, [activeFileTab]);
+
+    useEffect(() => {
+        if(editorSocket) {
+            editorSocket.on('readFileSuccess', (data) => {
+                if(data.path === activeFileTab?.path) {
+                    setFileContent(data.value);
+                }
+            });
+        }
+
+        return () => {
+            if(editorSocket) {
+              editorSocket.off('readFileSuccess');
+            }  
+        };
+    }, [editorSocket, activeFileTab])
 
     useEffect(() => {
         downloadTheme();
@@ -50,7 +80,7 @@ export const EditorComponent = () => {
     
     return (
         <>
-        { editorState.theme &&
+        { editorState.theme && activeFileTab ?
          <Editor 
             width={'100%'}
             defaultLanguage={undefined}
@@ -61,9 +91,21 @@ export const EditorComponent = () => {
             }}
             language={extensionToFileType(activeFileTab?.extension)}
             onChange={handleChange}
-            value={activeFileTab?.value ? activeFileTab.value: '//Welcome to Playground'}
+            value={fileContent || '// Welcome to the playground'}  
             onMount={handleEditorTheme}
          />
+         : 
+         <div
+           style={{
+            textAlign : "center",
+            fontSize : "30px",
+            color : "white",
+            marginTop : "50px"
+           }}>
+            <h1>
+                Select File
+            </h1>
+         </div>
         }
         </>
     )

@@ -1,0 +1,55 @@
+.editor-tab {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    position: relative;
+}
+
+.editor-tab-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.editor-button {
+    flex-grow: 1;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+
+    background-color: #4a4859;
+    color: #959eba;
+}
+
+.editor-button:hover {
+    background-color: #4a4859;
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ff5555;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.editor-tab.active .editor-button {
+    border-top: 2px solid #f7b9dd;
+    background-color: #303242;
+    color: white;
+}
+
+.editor-tab.error .editor-button {
+    color: #ff5555;
+}
