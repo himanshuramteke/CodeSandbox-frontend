@@ -1,0 +1,64 @@
+.fileContextOptionsWrapper {
+    width: 120px;
+    position: fixed;
+    border: 1.5px solid black;
+    background-color: #222230;
+    z-index: 1000;
+}
+
+.fileContextButton {
+    color: white;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+    background-color: #363545;
+    padding: 5px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.fileContextButton:hover {
+    background-color: #4d4b4b;
+}
+
+.contextMenuInputContainer {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #363545;
+}
+
+.contextMenuInput {
+    padding: 6px 8px;
+    border: 1px solid #222230;
+    border-radius: 2px;
+    font-size: 14px;
+    background-color: #222230;
+    color: white;
+}
+
+.contextMenuInputButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.contextMenuInputButtons .fileContextButton {
+    text-align: center;
+    height: auto;
+}
+
+.contextMenuInputButtons .fileContextButton:first-child {
+    background-color: #4a5d8e;
+}
+
+.contextMenuInputButtons .fileContextButton:first-child:hover {
+    background-color: #576ea9;
+}
+
+.contextMenuInputButtons .fileContextButton:last-child:hover {
+    background-color: #4d4b4b;
+}

@@ -31,6 +31,35 @@ export const useEditorSocketStore = create((set) => ({
             portSetter(port);
         })
         
+        incomingSocket?.on("createFileSuccess", (data) => {
+            console.log("Create file success", data);
+            projectTreeStructureSetter();
+        });
+
+        incomingSocket?.on("createFolderSuccess", (data) => {
+            console.log("Create folder success", data);
+            projectTreeStructureSetter();
+        });
+
+        incomingSocket?.on("deleteFolderSuccess", (data) => {
+            console.log("Delete folder success", data);
+            projectTreeStructureSetter();
+        });
+
+        incomingSocket?.on("renameFileSuccess", ({ oldPath, newPath}) => {
+            console.log(`File renamed from ${oldPath} to ${newPath}`);
+            projectTreeStructureSetter();
+        });
+
+        incomingSocket?.on("renameFolderSuccess", ({ oldPath, newPath }) => {
+            console.log(`Folder renamed from ${oldPath} to ${newPath}`);
+            projectTreeStructureSetter();
+        });
+
+        incomingSocket?.on("error", (error) => {
+            console.error("Socket error", error);
+        });
+        
         set({
             editorSocket: incomingSocket
         });
