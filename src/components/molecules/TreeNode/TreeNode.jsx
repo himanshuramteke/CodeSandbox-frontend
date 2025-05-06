@@ -96,10 +96,14 @@ export const TreeNode = ({
                         backgroundColor: "transparent",
                         padding: "15px",
                         fontSize: "16px",
-                        marginTop: "10px"
+                        marginTop: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
                     }}
                 >
                     {visibility[fileFolderData.name] ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                    <FileIcon isFolder={true} isOpen={visibility[fileFolderData.name]} />
                     {fileFolderData.name}
                 </button>
             ) : (
@@ -124,7 +128,15 @@ export const TreeNode = ({
                 </div>
             )}
             {visibility[fileFolderData.name] && fileFolderData.children && (
-                fileFolderData.children.map((child) => (
+                [...fileFolderData.children]
+                .sort((a, b) => {
+                    const isAFolder = !!a.children;
+                    const isBFolder = !!b.children;
+                    if (isAFolder && !isBFolder) return -1;
+                    if (!isAFolder && isBFolder) return 1;
+                    return a.name.localeCompare(b.name); // Optional: sort alphabetically within type
+                })
+                .map((child) => (
                     <TreeNode 
                         fileFolderData={child}
                         key={child.name}
