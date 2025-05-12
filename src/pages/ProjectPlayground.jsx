@@ -88,12 +88,10 @@ export const ProjectPlayground = () => {
                 <Allotment.Pane preferredSize={400}>
                     <div
                         style={{
-                            padding: "10px",
                             height: "100%"
                         }}
                     >
                         <Button
-                            style={{ marginBottom: "10px" }}
                             onClick={() => setLoadBrowser(true)}
                         >
                             Load my browser

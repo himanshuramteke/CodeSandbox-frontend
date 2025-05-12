@@ -102,9 +102,6 @@ export const EditorComponent = () => {
             color : "white",
             marginTop : "50px"
            }}>
-            <h1>
-                Select File
-            </h1>
          </div>
         }
         </>
