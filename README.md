@@ -1,9 +1,8 @@
-# CodeSandbox Frontend
+# <h1 align="center">🧑‍💻CodeSandbox Frontend</></h1>
 
 CodeSandbox is a React-based web application built with **Vite**. It provides a collaborative code editing environment for your 'React' projects with real-time file editing, live preview, and terminal integration. The project follows the **Atomic Design Pattern** for organizing components, ensuring scalability and maintainability.
 
----
-## Features
+## <h2 align="center">Features🔥</h3>
 
 - **Real-Time Code Editing**: Collaborative editing using the Monaco Editor.
 - **Live Preview**: Integrated browser for live application previews.
@@ -13,9 +12,7 @@ CodeSandbox is a React-based web application built with **Vite**. It provides a 
 - **Tab Management**: Edit multiple files with a tabbed interface.
 - **Atomic Design Pattern**: Organized folder structure for scalable development.
 
----
-
-## Project Structure
+## <h2 align="center">🧬Project Structure</h2>
 
 The project is organized using the **Atomic Design Pattern**, which breaks down components into four levels: **atoms**, **molecules**, **organisms** and **pages**.
 
@@ -107,5 +104,5 @@ Step-5: Click on the `Load Browser` Button of the Browser window for live previe
 - **Zustand**: A lightweight, scalable state management library for React.
 
 
-## Check Backend Code:
+### Check Backend Code:
 # [CodeSanbox-Backend](https://github.com/himanshuramteke/CodeSandbox-backend) 
